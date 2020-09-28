@@ -1,0 +1,31 @@
+---
+- name: Check for online hosts
+  hosts: all
+  gather_facts: false
+  connection: network_cli
+  vars:
+    ansible_network_os: ios
+
+  tasks:
+    - name: Ping for reachability
+      command: ping -c3 {{ inventory_hostname }}
+      delegate_to: localhost
+      register: ping_result
+      ignore_errors: true
+
+    - name: Group hosts by online
+      group_by: key=reachable
+      when: ping_result.rc == 0
+
+- name: Ensure local admin account exists
+  hosts: reachable
+  gather_facts: false
+  connection: network_cli
+  collections:
+    - cisco.ios
+  vars:
+    ansible_network_os: ios
+
+  tasks:
+    - include_role:
+        name: cisco_user_compliance
