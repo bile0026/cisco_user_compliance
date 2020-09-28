@@ -17,7 +17,8 @@
     state: absent
   register: remove_user_result
   with_items: "{{ remove_local_users }}"
-# - name: Save IOS
-#   cisco.ios.ios_command:
-#     commands: write memory
-#   when: add_user_result is changed or remove_user_result is changed
+
+- name: Save IOS
+  cisco.ios.ios_command:
+    commands: write memory
+  when: add_user_result is changed or remove_user_result is changed
