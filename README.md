@@ -7,6 +7,8 @@ local_pass
 local_user
 ```
 
+# Version 1.0
+
 Add users to variable to remove these:
 
 ```
@@ -14,3 +16,7 @@ remove_local_users:
     - user1
     - user2
 ```
+
+# Version 2.0
+
+Purges all users except specified user in the local_user var.
