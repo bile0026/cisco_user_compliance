@@ -9,16 +9,10 @@
     update_password: on_create
     privilege: 15
     state: present
+    purge: True
   register: add_user_result
-
-- name: Ensure admin users do not exist
-  cisco.ios.ios_user:
-    name: "{{ item }}"
-    state: absent
-  register: remove_user_result
-  with_items: "{{ remove_local_users }}"
 
 - name: Save IOS
   cisco.ios.ios_command:
     commands: write memory
-  when: add_user_result is changed or remove_user_result is changed
+  when: add_user_result is changed
