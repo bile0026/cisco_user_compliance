@@ -12,10 +12,12 @@
       delegate_to: localhost
       register: ping_result
       ignore_errors: true
+      check_mode: False
 
     - name: Group hosts by online
       group_by: key=reachable
       when: ping_result.rc == 0
+      check_mode: False
 
 - name: Ensure local admin account exists
   hosts: reachable
