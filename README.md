@@ -19,4 +19,4 @@ remove_local_users:
 
 # Version 2.0
 
-Purges all users except specified user in the local_user var.
+Purges all users except specified user in the local_user var. Set purge_users in defaults to false to change this behavior.

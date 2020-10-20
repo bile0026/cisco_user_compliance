@@ -1,2 +1,3 @@
 ---
 # defaults file for cisco_user_compliance
+purge_users: True

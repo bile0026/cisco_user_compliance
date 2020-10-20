@@ -9,7 +9,7 @@
     update_password: on_create
     privilege: 15
     state: present
-    purge: True
+    purge: "{{ purge_users }}"
   register: add_user_result
 
 - name: Save IOS
